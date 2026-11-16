@@ -1,0 +1,402 @@
+argmap: 200 inputs and outputs, from real runs (io/ios.pl has the same as Prolog facts).
+
+1. grounded([p1,p2,c1,c2,c3], [c2-p1,c2-c3,c3-p1,c3-c1])
+   => [c1,c2,p2]
+2. circular([c3-c2])
+   => []
+3. unsupported([premise(p1),premise(p2)], [p1-p2,p1-c1,p2-p1,p2-c2,c1-c2,c2-c1,c3-p2], [c1,c2,c3])
+   => [c3]
+4. grounded([p1,p2,c1,c2,c3], [c1-c2,c1-c3,c2-p1,c3-p1,c3-c1])
+   => [p2]
+5. circular([p1-p2,p1-c2,p1-c3,p2-c2,p2-c3,c2-c3,c3-c1,c3-c2])
+   => [c2,c3]
+6. unsupported([premise(p1),premise(p2)], [p2-c1,p2-c2,c1-p2,c1-c3], [c1,c2,c3])
+   => []
+7. grounded([p1,p2,c1,c2,c3], [p2-c1,p2-c2,p2-c3,c1-c2,c2-c3,c3-p1,c3-p2,c3-c1])
+   => []
+8. circular([p2-p1,c1-c2,c3-p2])
+   => []
+9. unsupported([premise(p1),premise(p2)], [p1-c1,c1-p2,c1-c3,c2-c1,c3-c2], [c1,c2,c3])
+   => []
+10. grounded([p1,p2,c1,c2,c3], [p1-p2,c2-p2,c3-p2])
+   => [c1,c2,c3,p1]
+11. circular([p1-c2,c1-p1,c2-c3])
+   => []
+12. unsupported([premise(p1),premise(p2)], [p1-p2,p2-p1,p2-c1,p2-c3,c3-p2], [c1,c2,c3])
+   => [c2]
+13. grounded([p1,p2,c1,c2,c3], [p1-c2,p1-c3,p2-c1,p2-c2,c1-p1,c2-c3,c3-c2])
+   => [p1,p2]
+14. circular([p1-p2,p1-c1,p2-p1,c3-p2])
+   => [p1,p2]
+15. unsupported([premise(p1),premise(p2)], [p1-c1,p2-c1,c1-p1,c3-c1], [c1,c2,c3])
+   => [c2,c3]
+16. grounded([p1,p2,c1,c2,c3], [p1-c3,p2-c1,p2-c2,c1-c2,c1-c3,c2-c3,c3-p1])
+   => [p2]
+17. circular([])
+   => []
+18. unsupported([premise(p1),premise(p2)], [p1-p2,p2-p1,c1-c3,c2-p2,c2-c1,c2-c3], [c1,c2,c3])
+   => [c1,c2,c3]
+19. grounded([p1,p2,c1,c2,c3], [p2-c2,c2-c3,c3-p2])
+   => [c1,p1]
+20. circular([p2-p1,p2-c1,p2-c2,c1-c3,c2-p2])
+   => [c2,p2]
+21. unsupported([premise(p1),premise(p2)], [c1-p1,c2-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+22. grounded([p1,p2,c1,c2,c3], [p1-c3])
+   => [c1,c2,p1,p2]
+23. circular([p1-c2,p2-c1,p2-c2,p2-c3,c1-p1,c3-p2])
+   => [c3,p2]
+24. unsupported([premise(p1),premise(p2)], [], [c1,c2,c3])
+   => [c1,c2,c3]
+25. grounded([p1,p2,c1,c2,c3], [p1-c1,c3-c1])
+   => [c2,c3,p1,p2]
+26. circular([c1-c3,c2-c3])
+   => []
+27. unsupported([premise(p1),premise(p2)], [c2-p1,c2-p2,c3-c2], [c1,c2,c3])
+   => [c1,c2,c3]
+28. grounded([p1,p2,c1,c2,c3], [p1-p2])
+   => [c1,c2,c3,p1]
+29. circular([p1-c2,p2-p1,p2-c1,p2-c2,c1-c3,c3-p2,c3-c2])
+   => [c1,c3,p2]
+30. unsupported([premise(p1),premise(p2)], [p1-c3,c1-p1,c1-c3,c2-p1,c2-p2,c3-c1,c3-c2], [c1,c2,c3])
+   => []
+31. grounded([p1,p2,c1,c2,c3], [c1-p1,c1-p2,c1-c2,c2-p1,c2-p2,c2-c3,c3-p2])
+   => [c1,c3]
+32. circular([c1-p2,c1-c3,c3-p1])
+   => []
+33. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c3], [c1,c2,c3])
+   => [c1,c2]
+34. grounded([p1,p2,c1,c2,c3], [c2-p1,c3-c2])
+   => [c1,c3,p1,p2]
+35. circular([c1-c2,c2-c1,c3-p2])
+   => [c1,c2]
+36. unsupported([premise(p1),premise(p2)], [c1-p1,c2-c1], [c1,c2,c3])
+   => [c1,c2,c3]
+37. grounded([p1,p2,c1,c2,c3], [p1-c1,c1-c3,c2-p1,c3-p2])
+   => [c1,c2,p2]
+38. circular([])
+   => []
+39. unsupported([premise(p1),premise(p2)], [p2-p1], [c1,c2,c3])
+   => [c1,c2,c3]
+40. grounded([p1,p2,c1,c2,c3], [p1-c3])
+   => [c1,c2,p1,p2]
+41. circular([c1-c3])
+   => []
+42. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c1,c2-p1,c2-c3,c3-p2], [c1,c2,c3])
+   => [c2]
+43. grounded([p1,p2,c1,c2,c3], [c1-c3,c2-c1])
+   => [c2,c3,p1,p2]
+44. circular([p2-c3,c2-p1])
+   => []
+45. unsupported([premise(p1),premise(p2)], [p1-c1,p2-p1,c1-c2,c3-p1,c3-c2], [c1,c2,c3])
+   => [c3]
+46. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c2,c1-c3,c2-c1,c3-p2])
+   => [c1,p1]
+47. circular([p1-c3,c3-p2,c3-c1,c3-c2])
+   => []
+48. unsupported([premise(p1),premise(p2)], [c3-p1], [c1,c2,c3])
+   => [c1,c2,c3]
+49. grounded([p1,p2,c1,c2,c3], [p1-c1,c1-p1,c1-c3,c2-p1,c3-p2])
+   => [c1,c2,p2]
+50. circular([p1-p2,c1-p1,c2-p1,c2-p2])
+   => []
+51. unsupported([premise(p1),premise(p2)], [p2-c3,c2-p1,c3-p2,c3-c1], [c1,c2,c3])
+   => [c2]
+52. grounded([p1,p2,c1,c2,c3], [p2-p1,p2-c1,c1-c2,c2-c1])
+   => [c2,c3,p2]
+53. circular([p1-c1,p1-c2,p2-p1,p2-c1,c1-p1,c1-c2,c2-p1,c2-p2,c2-c3,c3-c1])
+   => [c1,c2,c3,p1,p2]
+54. unsupported([premise(p1),premise(p2)], [c1-c3], [c1,c2,c3])
+   => [c1,c2,c3]
+55. grounded([p1,p2,c1,c2,c3], [c2-p2,c3-c1])
+   => [c2,c3,p1]
+56. circular([])
+   => []
+57. unsupported([premise(p1),premise(p2)], [p1-c1,p1-c2,p1-c3,c3-c2], [c1,c2,c3])
+   => []
+58. grounded([p1,p2,c1,c2,c3], [p2-c1,p2-c2,c1-p2,c2-c3,c3-c2])
+   => [p1]
+59. circular([p1-c1,p2-c3,c1-p1,c1-p2])
+   => [c1,p1]
+60. unsupported([premise(p1),premise(p2)], [p2-c2,p2-c3,c1-p2,c1-c2,c2-c3,c3-p1,c3-c2], [c1,c2,c3])
+   => [c1]
+61. grounded([p1,p2,c1,c2,c3], [p1-p2,p2-c2,c2-c3,c3-p1])
+   => [c1]
+62. circular([c3-c2])
+   => []
+63. unsupported([premise(p1),premise(p2)], [c2-c1,c2-c3,c3-p1], [c1,c2,c3])
+   => [c1,c2,c3]
+64. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c3,p2-c1,c2-p2])
+   => [c1,c2,p1]
+65. circular([p1-c2,p2-c2,c1-p2,c1-c2,c2-c1,c3-p1,c3-p2,c3-c2])
+   => [c1,c2,p2]
+66. unsupported([premise(p1),premise(p2)], [p1-c3,p2-p1,c1-p2,c1-c3,c3-p1,c3-c1], [c1,c2,c3])
+   => [c2]
+67. grounded([p1,p2,c1,c2,c3], [p2-c1,c1-c3,c2-p2,c3-p2])
+   => [c1,c2,p1]
+68. circular([c3-c2])
+   => []
+69. unsupported([premise(p1),premise(p2)], [p2-c2,c3-p1], [c1,c2,c3])
+   => [c1,c3]
+70. grounded([p1,p2,c1,c2,c3], [p2-p1,p2-c2,p2-c3,c3-p2])
+   => [c1]
+71. circular([c2-c3,c3-p1])
+   => []
+72. unsupported([premise(p1),premise(p2)], [p1-c1,c1-p1,c2-c1,c3-p1], [c1,c2,c3])
+   => [c2,c3]
+73. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,p2-c2,c3-c2])
+   => [c3,p1]
+74. circular([c1-p2,c1-c2,c3-p2])
+   => []
+75. unsupported([premise(p1),premise(p2)], [p1-c3], [c1,c2,c3])
+   => [c1,c2]
+76. grounded([p1,p2,c1,c2,c3], [p1-p2,c1-c2,c2-p2,c2-c1,c3-c2])
+   => [c1,c3,p1]
+77. circular([p1-c3,c1-p1,c2-p2,c3-p2])
+   => []
+78. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c3,c1-c2], [c1,c2,c3])
+   => [c1,c2]
+79. grounded([p1,p2,c1,c2,c3], [p1-c1,p2-p1,p2-c1,c1-p2,c2-c1,c3-p2])
+   => [c2,c3,p1]
+80. circular([p1-c2,c2-c3])
+   => []
+81. unsupported([premise(p1),premise(p2)], [p2-p1,c2-p1,c2-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+82. grounded([p1,p2,c1,c2,c3], [p1-c3,p2-p1,p2-c2,c3-c2])
+   => [c1,c3,p2]
+83. circular([p2-c2,c2-c3,c3-c1])
+   => []
+84. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c1,c1-p1,c2-p1,c2-c1,c3-c2], [c1,c2,c3])
+   => []
+85. grounded([p1,p2,c1,c2,c3], [p1-c2,c3-c1])
+   => [c3,p1,p2]
+86. circular([p2-c2,p2-c3,c1-p1,c3-c2])
+   => []
+87. unsupported([premise(p1),premise(p2)], [p2-p1,p2-c1,c1-c2,c1-c3], [c1,c2,c3])
+   => []
+88. grounded([p1,p2,c1,c2,c3], [p1-c2,p2-c3,c2-p2])
+   => [c1,p1,p2]
+89. circular([p1-p2,p2-c2,c1-c2,c2-c1,c3-p2])
+   => [c1,c2]
+90. unsupported([premise(p1),premise(p2)], [p1-c3,p2-p1,p2-c3,c2-c3,c3-p2,c3-c1], [c1,c2,c3])
+   => [c2]
+91. grounded([p1,p2,c1,c2,c3], [p1-c2,p2-p1,p2-c1,c1-p2,c1-c3,c2-p2])
+   => []
+92. circular([c3-c2])
+   => []
+93. unsupported([premise(p1),premise(p2)], [p2-c1,c3-p1], [c1,c2,c3])
+   => [c2,c3]
+94. grounded([p1,p2,c1,c2,c3], [p1-c2,p2-c1,p2-c2,c1-p2,c3-p1])
+   => [c3]
+95. circular([p1-c3,p2-c1,c3-c1])
+   => []
+96. unsupported([premise(p1),premise(p2)], [c2-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+97. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,c3-p2])
+   => [c2,c3,p1]
+98. circular([p1-p2,p1-c1,p2-c3,c3-p2])
+   => [c3,p2]
+99. unsupported([premise(p1),premise(p2)], [p1-c2,p1-c3,c2-c1,c2-c3,c3-c1], [c1,c2,c3])
+   => []
+100. grounded([p1,p2,c1,c2,c3], [c2-p2,c3-p2,c3-c2])
+   => [c1,c3,p1]
+101. circular([p1-c1,p1-c2,p2-c3,c1-p1,c1-c2,c2-c3,c3-c1,c3-c2])
+   => [c1,c2,c3,p1]
+102. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c2,c1-c2,c1-c3,c3-p1], [c1,c2,c3])
+   => [c1]
+103. grounded([p1,p2,c1,c2,c3], [p2-c2,c2-p2,c3-p2])
+   => [c1,c2,c3,p1]
+104. circular([p1-c1,p1-c3,c1-p1,c1-p2,c1-c2,c3-c2])
+   => [c1,p1]
+105. unsupported([premise(p1),premise(p2)], [p1-p2,p2-p1,c1-p2,c3-c1], [c1,c2,c3])
+   => [c1,c2,c3]
+106. grounded([p1,p2,c1,c2,c3], [p2-c2,c2-c1])
+   => [c1,c3,p1,p2]
+107. circular([])
+   => []
+108. unsupported([premise(p1),premise(p2)], [p1-c3,p2-p1,p2-c3,c1-c3,c2-c3,c3-p1], [c1,c2,c3])
+   => [c1,c2]
+109. grounded([p1,p2,c1,c2,c3], [p2-p1,c1-p1,c3-p2])
+   => [c1,c2,c3]
+110. circular([p1-c1,p2-c2,c1-c2,c2-c3])
+   => []
+111. unsupported([premise(p1),premise(p2)], [p1-p2,c3-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+112. grounded([p1,p2,c1,c2,c3], [p2-c2,c1-p1,c2-p1])
+   => [c1,c3,p2]
+113. circular([p2-c1,p2-c3,c1-p1,c2-p1,c2-p2,c3-p1,c3-p2,c3-c2])
+   => [c2,c3,p2]
+114. unsupported([premise(p1),premise(p2)], [p1-c2], [c1,c2,c3])
+   => [c1,c3]
+115. grounded([p1,p2,c1,c2,c3], [c1-p2,c2-c3])
+   => [c1,c2,p1]
+116. circular([p2-c3,c2-c1])
+   => []
+117. unsupported([premise(p1),premise(p2)], [p1-p2,p1-c1,p1-c3,p2-p1,p2-c3,c1-p2,c3-c2], [c1,c2,c3])
+   => []
+118. grounded([p1,p2,c1,c2,c3], [c2-c1,c2-c3])
+   => [c2,p1,p2]
+119. circular([c1-p1,c1-c2,c3-c2])
+   => []
+120. unsupported([premise(p1),premise(p2)], [p1-c1,p1-c3,c1-c3], [c1,c2,c3])
+   => [c2]
+121. grounded([p1,p2,c1,c2,c3], [p1-p2,p2-c2,c1-p1,c1-c2,c3-c1])
+   => [c2,c3,p1]
+122. circular([p1-p2,c1-c3,c2-p1,c3-p2,c3-c1,c3-c2])
+   => [c1,c3]
+123. unsupported([premise(p1),premise(p2)], [c2-p2,c3-c1], [c1,c2,c3])
+   => [c1,c2,c3]
+124. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c3,c1-p2,c1-c2,c1-c3,c2-p1])
+   => [c1,p1]
+125. circular([p1-c2,p1-c3,p2-p1,c1-c3,c2-p2,c2-c3,c3-p2])
+   => [c2,c3,p1,p2]
+126. unsupported([premise(p1),premise(p2)], [c1-p1,c1-c3,c2-c1,c3-c2], [c1,c2,c3])
+   => [c1,c2,c3]
+127. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,p2-p1,p2-c2,p2-c3,c1-p2,c1-c2,c3-p2])
+   => []
+128. circular([p1-p2,c2-c3])
+   => []
+129. unsupported([premise(p1),premise(p2)], [p1-c2,p2-p1], [c1,c2,c3])
+   => [c1,c3]
+130. grounded([p1,p2,c1,c2,c3], [p2-c3])
+   => [c1,c2,p1,p2]
+131. circular([p1-c1,p2-c1,p2-c2,c1-p2,c2-p1,c2-p2,c2-c3,c3-p1])
+   => [c1,c2,c3,p1,p2]
+132. unsupported([premise(p1),premise(p2)], [p1-p2,c1-p2,c1-c3,c2-c1,c2-c3], [c1,c2,c3])
+   => [c1,c2,c3]
+133. grounded([p1,p2,c1,c2,c3], [p2-c2,c1-p2,c2-c3])
+   => [c1,c2,p1]
+134. circular([p1-c3,c3-p2])
+   => []
+135. unsupported([premise(p1),premise(p2)], [p1-c1,c2-p1], [c1,c2,c3])
+   => [c2,c3]
+136. grounded([p1,p2,c1,c2,c3], [c1-p1])
+   => [c1,c2,c3,p2]
+137. circular([p2-p1,p2-c1,c1-p2,c3-c2])
+   => [c1,p2]
+138. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c1,c2-p2,c3-p1,c3-p2], [c1,c2,c3])
+   => [c2]
+139. grounded([p1,p2,c1,c2,c3], [p1-c1,c2-p2,c2-c1,c3-p1])
+   => [c2,c3]
+140. circular([p1-p2,p1-c1,p1-c2,p2-c1,c2-p2])
+   => []
+141. unsupported([premise(p1),premise(p2)], [p1-p2,p1-c1,c1-p1,c2-c1,c3-c2], [c1,c2,c3])
+   => [c2,c3]
+142. grounded([p1,p2,c1,c2,c3], [p1-p2,c1-p2,c2-c3])
+   => [c1,c2,p1]
+143. circular([p1-c1,p1-c3,c2-c3])
+   => []
+144. unsupported([premise(p1),premise(p2)], [p2-c2,c1-c3], [c1,c2,c3])
+   => [c1,c3]
+145. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,p2-c1,p2-c2,c1-p1,c1-p2,c1-c3])
+   => []
+146. circular([c3-p1,c3-p2])
+   => []
+147. unsupported([premise(p1),premise(p2)], [p1-c3,p2-c1,c1-p2,c2-c3,c3-p2], [c1,c2,c3])
+   => [c2]
+148. grounded([p1,p2,c1,c2,c3], [c1-p2,c1-c2,c2-c1,c3-c1])
+   => [c2,c3,p1,p2]
+149. circular([p2-c1,c1-c2])
+   => []
+150. unsupported([premise(p1),premise(p2)], [p1-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+151. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,p1-c3])
+   => [c2,p1]
+152. circular([p1-c2,p2-c1,c1-c2,c3-p2,c3-c1])
+   => []
+153. unsupported([premise(p1),premise(p2)], [p2-c2,c1-c3,c2-p1,c2-p2,c3-p1], [c1,c2,c3])
+   => [c1,c3]
+154. grounded([p1,p2,c1,c2,c3], [p1-c3,p2-p1,c2-p2])
+   => [c1,c2,p1]
+155. circular([p1-c2,c3-p1])
+   => []
+156. unsupported([premise(p1),premise(p2)], [p1-p2,p2-c1], [c1,c2,c3])
+   => [c2,c3]
+157. grounded([p1,p2,c1,c2,c3], [p1-c2,c2-p1,c2-c1,c2-c3,c3-p2,c3-c1])
+   => []
+158. circular([p1-c3,p2-p1,c1-p1,c2-c1])
+   => []
+159. unsupported([premise(p1),premise(p2)], [c1-p1,c2-p1,c2-p2], [c1,c2,c3])
+   => [c1,c2,c3]
+160. grounded([p1,p2,c1,c2,c3], [])
+   => [c1,c2,c3,p1,p2]
+161. circular([p1-c1,c1-p1,c2-c1,c3-c1])
+   => [c1,p1]
+162. unsupported([premise(p1),premise(p2)], [p1-c1,p1-c2,p1-c3,p2-p1,p2-c3,c1-c3,c2-c3,c3-c2], [c1,c2,c3])
+   => []
+163. grounded([p1,p2,c1,c2,c3], [p1-p2,c2-p2,c2-c1,c3-p2])
+   => [c2,c3,p1]
+164. circular([c2-c3,c3-c1])
+   => []
+165. unsupported([premise(p1),premise(p2)], [c2-c1,c3-c2], [c1,c2,c3])
+   => [c1,c2,c3]
+166. grounded([p1,p2,c1,c2,c3], [c2-p1,c3-p1])
+   => [c1,c2,c3,p2]
+167. circular([c1-p1,c2-c3])
+   => []
+168. unsupported([premise(p1),premise(p2)], [c1-p2,c3-p1], [c1,c2,c3])
+   => [c1,c2,c3]
+169. grounded([p1,p2,c1,c2,c3], [p1-c1,c1-p1,c2-p1,c3-p1])
+   => [c1,c2,c3,p2]
+170. circular([p1-c1,p2-p1,c1-p1,c1-c3])
+   => [c1,p1]
+171. unsupported([premise(p1),premise(p2)], [p2-c3,c1-p1,c1-p2,c1-c2,c2-c1,c3-p1,c3-c2], [c1,c2,c3])
+   => []
+172. grounded([p1,p2,c1,c2,c3], [c1-p1,c3-c1])
+   => [c2,c3,p1,p2]
+173. circular([p1-p2,p2-p1,c3-c1])
+   => [p1,p2]
+174. unsupported([premise(p1),premise(p2)], [p1-p2,p1-c1,p2-c1,c2-p2,c2-c1], [c1,c2,c3])
+   => [c2,c3]
+175. grounded([p1,p2,c1,c2,c3], [p1-c1,p1-c2,p2-c3,c1-c2,c3-p2])
+   => [p1]
+176. circular([])
+   => []
+177. unsupported([premise(p1),premise(p2)], [p1-p2,p2-p1,p2-c2,p2-c3], [c1,c2,c3])
+   => [c1]
+178. grounded([p1,p2,c1,c2,c3], [p1-c3,p2-p1,c1-c2,c3-c2])
+   => [c1,c3,p2]
+179. circular([p1-c1,p2-c1,p2-c3])
+   => []
+180. unsupported([premise(p1),premise(p2)], [p1-c3,p2-p1,c1-p2,c2-p2,c2-c1], [c1,c2,c3])
+   => [c1,c2]
+181. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c3,p2-p1,c2-p2,c3-p2])
+   => [c1,c2,p1]
+182. circular([p1-c3,c2-c3,c3-p1,c3-c2])
+   => [c2,c3,p1]
+183. unsupported([premise(p1),premise(p2)], [p1-c2,p2-c1,p2-c2,c3-c1], [c1,c2,c3])
+   => [c3]
+184. grounded([p1,p2,c1,c2,c3], [p2-p1])
+   => [c1,c2,c3,p2]
+185. circular([c3-c2])
+   => []
+186. unsupported([premise(p1),premise(p2)], [p1-c2], [c1,c2,c3])
+   => [c1,c3]
+187. grounded([p1,p2,c1,c2,c3], [])
+   => [c1,c2,c3,p1,p2]
+188. circular([p2-p1])
+   => []
+189. unsupported([premise(p1),premise(p2)], [p1-p2,p1-c2,p2-c2,p2-c3,c1-c3,c2-p2,c2-c3], [c1,c2,c3])
+   => [c1]
+190. grounded([p1,p2,c1,c2,c3], [p1-p2,c1-p1,c1-c3,c2-c3,c3-c2])
+   => [c1,c2,p2]
+191. circular([p1-p2,p2-c3,c1-c2,c1-c3,c2-c3,c3-p2,c3-c1])
+   => [c1,c2,c3,p2]
+192. unsupported([premise(p1),premise(p2)], [p1-c1,p1-c2,p2-c2,c1-c2,c2-p2,c2-c1,c3-c1], [c1,c2,c3])
+   => [c3]
+193. grounded([p1,p2,c1,c2,c3], [c1-p1,c2-p1,c3-p1])
+   => [c1,c2,c3,p2]
+194. circular([p1-p2,p1-c1,p1-c2,c1-p2])
+   => []
+195. unsupported([premise(p1),premise(p2)], [p1-c2,c2-p2,c2-c1,c2-c3,c3-c1], [c1,c2,c3])
+   => []
+196. grounded([p1,p2,c1,c2,c3], [p1-c1,p1-c3,p2-c2,c2-p1,c2-c3])
+   => [p1,p2]
+197. circular([p1-p2,p2-c1,p2-c3,c1-p1,c1-p2,c2-c3,c3-p1])
+   => [c1,c3,p1,p2]
+198. unsupported([premise(p1),premise(p2)], [], [c1,c2,c3])
+   => [c1,c2,c3]
+199. grounded([p1,p2,c1,c2,c3], [p1-p2,p1-c1,p1-c2,p2-c1,c2-p1,c2-c1,c2-c3,c3-p2])
+   => []
+200. circular([p1-c1,p2-p1])
+   => []
